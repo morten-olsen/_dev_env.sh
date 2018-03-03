@@ -26,6 +26,7 @@ else
     ;;
   esac
 fi
+unset called
 
 ROOT=$PWD/.magicenv
 if [ "_$AUTOENV_MODE" == "_ci" ]; then
@@ -36,7 +37,7 @@ fi
 SCRIPTPATH=$ROOT/scripts
 TOOLPATH=$ROOT/tools
 DEPENDENCIES=()
-DEPENDENCIES=()
+VERSIONS=()
 REPOSITORY="https://raw.githubusercontent.com/morten-olsen/magicenv/master/scripts"
 
 mkdir -p $SCRIPTPATH
@@ -55,6 +56,11 @@ download_script() {
 
 install_dep() {
   DEPENDENCIES+=($1)
+  VERSION="$2"
+  if [ -z $2 ]; then
+    VERSION="default"
+  fi
+  VERSIONS+=($VERSION)
 }
 
 tool_install_dep() {
@@ -70,15 +76,40 @@ init() {
   if [ -f $PWD/magicenv.config.sh ]; then
     source $PWD/magicenv.config.sh
   fi
-  for NAME in "${DEPENDENCIES[@]}"
+  for INDEX in ${!DEPENDENCIES[*]}
   do
+    unset do_install
+    NAME=${DEPENDENCIES[$INDEX]}
+    VERSION=${VERSIONS[$INDEX]}
     download_script "$NAME"
     source "$SCRIPTPATH/$NAME.sh"
+    if [ $VERSION == "default" ]; then
+      unset VERSION
+      get_default_version
+    fi
+    do_install $VERSION
   done
   export AUTOENV_IS_LOADED="true"
 }
 
+cleanup() {
+  unset download_script
+  unset install_dep
+  unset init
+  unset do_install
+  unset get_default_version
+  unset cleanup
+  unset SCRIPTPATH
+  unset TOOLPATH
+  unset DEPENDENCIES
+  unset VERSIONS
+  unset VERSION
+  unset NAME
+  unset ROOT
+}
+
 init
+cleanup
 
 case $1 in
   run)

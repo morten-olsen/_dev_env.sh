@@ -1,8 +1,14 @@
-xcodeversion=$(/usr/bin/xcodebuild -version | head -n 1)
-if [ "_$xcodeversion" == "_Xcode 9.2" ]; then
-  return
-fi
+do_install() {
+  xcodeversion=$(/usr/bin/xcodebuild -version | head -n 1)
+  if [ "_$xcodeversion" == "_Xcode $VERSION" ]; then
+    return
+  fi
 
-tool_install_dep "ruby"
-echo "Installing Xcode 9.2"
-xcversion install 9.2
+  tool_install_dep "ruby"
+  echo "Installing Xcode $VERSION"
+  xcversion install "$VERSION"
+}
+
+get_default_version() {
+  VERSION="9.2"
+}
