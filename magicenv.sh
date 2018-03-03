@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 
+called=$_
+[[ $called != $0 ]] && IS_SOURCED="true" || IS_SOURCED="false"
+if [ -z $1 ]; then
+  if [ "$IS_SOURCED" == "false" ]; then
+    echo "Running without params is reserved for sourcing"
+    exit
+  fi
+else
+  case $1 in
+    clean)
+      rm -rf "$PWD/.magicenv"
+    ;;
+    run)
+    ;;
+    help)
+    ;;
+    *)
+      echo "No known command provided, use ./magicenv.sh help to see available commands"
+      if [ "$IS_SOURCED" == "true" ]; then
+        return
+      else
+        exit 1
+      fi
+    ;;
+  esac
+fi
+
 ROOT=$PWD/.magicenv
 if [ "_$AUTOENV_MODE" == "_ci" ]; then
   ROOT="$HOME/.magicenv"
