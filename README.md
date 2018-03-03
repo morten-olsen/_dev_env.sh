@@ -36,11 +36,19 @@ install_dep 'android-sdk'
 install_dep 'global-xcode'
 
 function ios() {
-  npx react-native run-ios
+  bundle exec fastlane ios beta
 }
 
 function android() {
-  npx react-native run-android
+  bundle exec fastlane android beta
+}
+
+function setup() {
+  bundle update
+  npm install
+  bundle exec fastlane match development
+  bundle exec fastlane match adhoc
+  bundle exec fastlane match appstore
 }
 ```
 
