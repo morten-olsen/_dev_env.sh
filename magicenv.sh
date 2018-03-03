@@ -40,6 +40,7 @@ DEPENDENCIES=()
 REPOSITORY="https://raw.githubusercontent.com/morten-olsen/magicenv/master/scripts"
 
 mkdir -p $SCRIPTPATH
+mkdir -p $TOOLPATH
 
 download_script() {
   NAME="$1"
@@ -47,8 +48,8 @@ download_script() {
   if [ ! -f $TARGET ]; then
     echo "Fetching script for $NAME"
     URL=$REPOSITORY/$NAME.sh
-    curl -o $SCRIPTPATH/$NAME.sh $URL
-    # cp "./scripts/$NAME.sh" "$SCRIPTPATH/$NAME.sh"
+    # curl -o $SCRIPTPATH/$NAME.sh $URL
+    cp "./scripts/$NAME.sh" "$SCRIPTPATH/$NAME.sh"
   fi
 }
 

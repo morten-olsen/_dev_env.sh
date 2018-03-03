@@ -13,6 +13,7 @@ Currently supported dependencies:
 * `android-sdk`
 * `go@1.10`
 * `xcode@9.2`
+* `dotnet@2.1.4`
 
 This project is still in an ealy stage, and at some point later on it should be possible to specify the required version, but for now versions are fixed
 
