@@ -1,4 +1,4 @@
-# magicenv.sh
+# _dev_env.sh
 
 _** BEWARE **: This project is in an early state, as well is this documentation, both in language but also in information_
 
@@ -14,16 +14,17 @@ Currently supported dependencies:
 * `go@1.10`
 * `global-xcode@9.2`
 * `dotnet@2.1.4`
+* `visual-studio-code` (experimental)
 
 This project is still in an ealy stage, and at some point later on it should be possible to specify the required version, but for now versions are fixed
 
 ## Install
 
-running `bash <(curl -sL https://goo.gl/g7frTq)` will download `magicenv.sh`, `magicenv.md` and `magicenv.config.sh`
+running `bash <(curl -sL https://goo.gl/g7frTq)` will download `_dev_env.sh`, `_dev_env.md` and `_dev_env.config.sh`
 
 ## Configure
 
-All configuration is done inside `magicenv.config.sh`
+All configuration is done inside `_dev_env.config.sh`
 A lot more documentation will come, but for now an example of a development environment for a `react-native` app, which builds using `fastlane`
 
 ```shell
@@ -52,8 +53,8 @@ function setup() {
 }
 ```
 
-With the above configuration to run the android version simply run `./magicenv.sh run android`
+With the above configuration to run the android version simply run `./_dev_env.sh run android`
 
 ## Working inside the environment
 
-If you want to be able to run inside the environment, where all tools are available (this is for instance useful when installing new npm dependencies), it is possible to run `magicenv.sh` as a dot script, which extends teh current shell session with all the dev tools which are installed `source magicenv.sh`
+If you want to be able to run inside the environment, where all tools are available (this is for instance useful when installing new npm dependencies), it is possible to run `_dev_env.sh` as a dot script, which extends teh current shell session with all the dev tools which are installed `source _dev_env.sh`

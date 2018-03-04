@@ -1,14 +1,14 @@
 do_install() {
-  export GOROOT=$TOOLPATH/go
+  export GOROOT=$DEVENV_TOOLPATH/go
   export PATH=$PATH:$GOROOT/bin
-  if [ ! -d $TOOLPATH/go/bin ]; then
-    mkdir -p $TOOLPATH/go
+  if [ ! -d $DEVENV_TOOLPATH/go/bin ]; then
+    mkdir -p $DEVENV_TOOLPATH/go
     echo "Installing GO"
     # TODO: Change for non darwin, to use linux version
-    curl https://dl.google.com/go/go1.10.darwin-amd64.tar.gz -o $TOOLPATH/go.tar.gz
-    pushd $TOOLPATH
-    tar -xf $TOOLPATH/go.tar.gz
-    rm $TOOLPATH/go.tar.gz
+    curl https://dl.google.com/go/go1.10.darwin-amd64.tar.gz -o $DEVENV_TOOLPATH/go.tar.gz
+    pushd $DEVENV_TOOLPATH
+    tar -xf $DEVENV_TOOLPATH/go.tar.gz
+    rm $DEVENV_TOOLPATH/go.tar.gz
     popd
   fi
 }

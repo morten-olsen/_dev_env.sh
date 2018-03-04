@@ -1,5 +1,5 @@
 do_install() {
-  export rvm_path="$TOOLPATH/rvm"
+  export rvm_path="$DEVENV_TOOLPATH/rvm"
   if [ ! -f $rvm_path/scripts/rvm ]; then
     rm -rf $rvm_path
     echo "Installing RVM"

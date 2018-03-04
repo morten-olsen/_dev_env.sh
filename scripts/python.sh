@@ -10,7 +10,7 @@ do_install() {
     rm python.zip
     popd
   fi
-  export PYENV_ROOT="$TOOLPATH/python/pyenv-1.2.2"
+  export PYENV_ROOT="$DEVENV_TOOLPATH/python/pyenv-1.2.2"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
   pythonversion=$(pyenv global)

@@ -1,6 +1,6 @@
 do_install() {
-  export NVM_DIR="$TOOLPATH/nvm"
-  if [ ! -d $TOOLPATH/nvm ]; then
+  export NVM_DIR="$DEVENV_TOOLPATH/nvm"
+  if [ ! -d $DEVENV_TOOLPATH/nvm ]; then
     echo "Installing NVM"
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
   fi

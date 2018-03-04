@@ -1,5 +1,5 @@
 do_install() {
-  export ANDROID_HOME=$TOOLPATH/android
+  export ANDROID_HOME=$DEVENV_TOOLPATH/android
   export PATH=$PATH:$ANDROID_HOME/tools
   export PATH=$PATH:$ANDROID_HOME/platform-tools
   if [ ! -d $ANDROID_HOME/tools ]; then
